@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import Home from './Pages/Home'
+import "./design/styles.css"
+import { LanguageContext } from "./hooks/multilingualContext";
 
-function App() {
+export default function App() {
+  const [language, setLanguage] = useState("english");
+
+  function switchLanguage() {
+    setLanguage((language) => (language === "english" ? "polski" : "english"));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <LanguageContext.Provider value={{ language, switchLanguage }}>
+        <Home/>
+      </LanguageContext.Provider>
+    </>
+  )
 }
-
-export default App;

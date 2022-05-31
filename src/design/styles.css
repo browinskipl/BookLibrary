@@ -1,0 +1,43 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid grey;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.book__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.book__info {
+    padding-left: 20px;
+}
+
+.books__list {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.book--saved {
+    background-color: azure;
+}
+
+button {
+    border: 1px solid black;
+    background: rgb(214, 214, 214);
+    padding: 5px;
+    margin: 5px;
+}
+
+input {
+    border: 1px solid black;
+    margin-left: 10px;
+}
