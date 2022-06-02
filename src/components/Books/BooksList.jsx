@@ -48,14 +48,9 @@ export default function BooksList() {
 
       <div className='books__list'>
         {books.map((book, index) => {
-        if (books.length === index + 1) {
-          return <Book key={index} lastBookElementRef={lastBookElementRef} id={book.id} title={book.volumeInfo.title} description={book?.searchInfo?.textSnippet} year={book.volumeInfo.publishedDate} picture={book.volumeInfo?.imageLinks?.thumbnail} />
-        } else {
-          return <Book key={index} id={book.id} title={book.volumeInfo.title} description={book?.searchInfo?.textSnippet} year={book.volumeInfo.publishedDate} picture={book.volumeInfo?.imageLinks?.thumbnail} />
-        }
+          return <Book key={index} lastBookElementRef={books.length === index + 1 ? lastBookElementRef : null} id={book.id} title={book.volumeInfo.title} description={book?.searchInfo?.textSnippet} year={book.volumeInfo.publishedDate} picture={book.volumeInfo?.imageLinks?.thumbnail} />
        })}
       </div>
-
       <div>{loading && 'Loading...'}</div>
       <div>{error && 'Error'}</div>
     </>
