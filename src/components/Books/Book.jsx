@@ -37,16 +37,10 @@ function Book({lastBookElementRef, id, title, description, year, picture}) {
   
   const setBookLocalStorage = (id) => {
     const storedBooks = getBooksLocalStorage();
-    
-    if(storedBooks) {
-      const newStoredBooksArray = [...storedBooks, id];
-      
-      localStorage.setItem(localStorageName, JSON.stringify(newStoredBooksArray));
-    } else {
-      const storedBooksArray = [id];
 
-      localStorage.setItem(localStorageName, JSON.stringify(storedBooksArray));
-    }
+    const newStoredBooksArray = storedBooks ? [...storedBooks, id] : [id];
+    
+    localStorage.setItem(localStorageName, JSON.stringify(newStoredBooksArray));
   }
 
   const removeBookLocalStorage = (id) => (e) => {
