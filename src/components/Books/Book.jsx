@@ -25,7 +25,7 @@ function Book({lastBookElementRef, id, title, description, year, picture}) {
       return id;
     }
   }
-  const handleSaveBook = (id, e) => {
+  const handleSaveBook = (id) => (e) => {
     if(getBookLocalStorage(id)) {
       displayWarning();
     } else {
@@ -49,7 +49,7 @@ function Book({lastBookElementRef, id, title, description, year, picture}) {
     }
   }
 
-  const removeBookLocalStorage = (id, e) => {
+  const removeBookLocalStorage = (id) => (e) => {
     removeClass(e);
     const storedBooks = getBooksLocalStorage();
 
@@ -92,8 +92,8 @@ function Book({lastBookElementRef, id, title, description, year, picture}) {
         {year && <span>({year})</span>}
         {/* Instead of using dangerouslySetInnerHTML I could write HTML parser */}
         {description && <p dangerouslySetInnerHTML={{ __html: limitCharacters(description ? description : null) }}></p>}
-        <button onClick={(e) => handleSaveBook(id, e)}> <MultiLingualContent contentID="save" /></button>
-        <button onClick={(e) => removeBookLocalStorage(id, e)}> <MultiLingualContent contentID="remove" /></button>
+        <button onClick={handleSaveBook(id)}> <MultiLingualContent contentID="save" /></button>
+        <button onClick={removeBookLocalStorage(id)}> <MultiLingualContent contentID="remove" /></button>
       </div>
     </div>
     </>
