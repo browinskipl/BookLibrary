@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { limitCharacters } from "./../../helpers/limitCharacters";
 import MultiLingualContent from "../../utility/multilingualContent";
 import PropTypes from 'prop-types';
@@ -25,7 +25,7 @@ function Book({lastBookElementRef, id, title, description, year, picture}) {
       return id;
     }
   }
-  const handleSaveBook = (id) => (e) => {
+  const handleSaveBook = (id, e) => {
     if(getBookLocalStorage(id)) {
       displayWarning();
     } else {
@@ -35,7 +35,7 @@ function Book({lastBookElementRef, id, title, description, year, picture}) {
     }
   }
   
-  const setBookLocalStorage = (id, e) => {
+  const setBookLocalStorage = (id) => {
     const storedBooks = getBooksLocalStorage();
     
     if(storedBooks) {
@@ -92,7 +92,7 @@ function Book({lastBookElementRef, id, title, description, year, picture}) {
         {year && <span>({year})</span>}
         {/* Instead of using dangerouslySetInnerHTML I could write HTML parser */}
         {description && <p dangerouslySetInnerHTML={{ __html: limitCharacters(description ? description : null) }}></p>}
-        <button onClick={(e) => handleSaveBook(id)}> <MultiLingualContent contentID="save" /></button>
+        <button onClick={(e) => handleSaveBook(id, e)}> <MultiLingualContent contentID="save" /></button>
         <button onClick={(e) => removeBookLocalStorage(id, e)}> <MultiLingualContent contentID="remove" /></button>
       </div>
     </div>
